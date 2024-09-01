@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- model viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <title>
+    DreamGaussian
+  </title>
+  <link rel="icon" href="icon.ico">
+</head>
+<body>
+  <section class="section">
+
+  <div class="container has-text-centered">
+    <!-- paper title -->
+    <p class="title is-3"> Diffusing Winding Gradients (DWG): A Parallel and Scalable Method for 3D Reconstruction from Unoriented Point Clouds </p>
+    <!-- authors -->
+    <p class="title is-5 mt-2"> 
+      <a href="" target="_blank">Weizhou Liu*</a><sup>1</sup>, 
+      <a href="" target="_blank">Jiaze Li*</a><sup>2</sup>, 
+      <a href="" target="_blank">Xuhui Chen</a><sup>3</sup>, 
+      <a href="" target="_blank">Fei Hou</a><sup>3</sup>,
+      <a href="" target="_blank">Shiqing Xin</a><sup>4</sup>
+      <a href="" target="_blank">Xingce Wang</a><sup>1</sup>
+      <a href="" target="_blank">Zhongke Wu</a><sup>1</sup>
+      <a href="" target="_blank">Chen Qian</a><sup>5</sup>
+      <a href="" target="_blank">Ying He</a><sup>1</sup>
+    </p>
+    <!-- affiliations -->
+    <p class="subtitle is-5"> 
+      <sup>1</sup> Beijing Normal University &nbsp;
+      <sup>2</sup> Nanyang Technological University &nbsp;
+      <sup>3</sup> Chinese Academy of Sciences &nbsp;
+      <sup>4</sup> Shandong University &nbsp;
+      <sup>5</sup> SenseTime Research &nbsp;
+    </p>
+
+    <!-- other links -->
+    <div class="is-flex is-justify-content-center">
+      <span class="icon-text mx-1">
+        <a class="button is-dark" href="https://arxiv.org/abs/2405.13839" role="button" target="_blank"> <span class="icon"> <ion-icon name="document-outline"></ion-icon> </span> <span> Arxiv </span>  </a> 
+      </span>
+      <span class="icon-text mx-1">
+        <a class="button is-dark" href="" role="button" target="_blank"> <span class="icon"> <ion-icon name="logo-github"></ion-icon> </span> <span> Code </span> </a> 
+      </span>
+    </div>
+   
+  </div>
+
+  <!-- main container -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-left">
+This paper presents a method for reconstructing watertight 3D surfaces from unoriented point clouds. 
+Starting with randomly initialized normals, the method iteratively refines each normal by diffusing the gradient of the generalized winding number (GWN) field. 
+Upon convergence, the target surface is extracted using the standard Marching Cubes algorithm. 
+Our method is conceptually simple, easy to implement. 
+Our method employs a straightforward Jacobi iteration and avoids reliance on third-party numerical solvers for linear systems and linear/non-linear optimization, unlike other methods.
+Designed for parallelization and scalability, it efficiently handles large-scale models on both CPUs and GPUs.
+Experimental results demonstrate that our method  outperforms all existing methods in reconstructing from unoriented point clouds, particularly in terms of runtime performance.
+On large-scale models with 10 to 20 million points, our CUDA implementation on an NVIDIA GTX 4090 GPU is typically 30-100 times faster than iPSR, the leading sequential method tested on a high-end PC with an Intel i9 CPU.  
+Furthermore, our approach exhibits superior robustness against noise and effectively handles models with thin structures, surpassing existing methods. 
+We will make the source code publicly available to encourage further research and applications.
+    </p>
+    
+    <!-- results (videos) -->
+    <p class="title is-3 mt-5 has-text-centered"> Convergence Speed </p>
+
+    <p class="content has-text-centered is-size-5">
+      Our method converges in 2 minutes for image-to-3D while keeping good generation quality.
+    </p>
+    <video muted autoplay controls loop> <source src="videos/accelerate.mp4" type="video/mp4"> </video>
+
+
+    <p class="title is-3 mt-5 has-text-centered"> Image-to-3D </p>
+    <video muted autoplay loop> <source src="videos/image1.mp4" type="video/mp4"> </video>
+    <video muted autoplay loop> <source src="videos/image2.mp4" type="video/mp4"> </video>
+
+    <p class="content has-text-centered is-size-5">
+      We can support images with a non-zero elevation angle too!
+    </p>
+
+    <video muted autoplay loop> <source src="videos/elevation.mp4" type="video/mp4"> </video>
+    
+    <p class="title is-3 mt-5 has-text-centered"> Text-to-3D </p>
+    <video muted autoplay loop> <source src="videos/text.mp4" type="video/mp4"> </video>
+
+    <p class="title is-3 mt-5 has-text-centered"> Text-to-image-to-3D </p>
+    <video muted autoplay loop> <source src="videos/text-to-image-to-3d.mp4" type="video/mp4"> </video>
+
+    <p class="title is-3 mt-5 has-text-centered"> Optimization Progress </p>
+    <table class="table">
+      <tbody>
+        <tr> 
+          <th> <video muted controls autoplay loop> <source src="videos/gui.mp4" type="video/mp4"> </video> </th>
+          <th> <video muted controls autoplay loop> <source src="videos/gui2.mp4" type="video/mp4"> </video> </th>
+        </tr>
+        <tr>
+          <th class="has-text-centered"> Stage 1 (Generative Gaussian Splatting) </th>
+          <th class="has-text-centered"> Stage 2 (Mesh Texture Refinement) </th>
+        </tr>
+    </table>
+    <p class="content has-text-centered is-size-5">
+      Videos are played at the original speed and recorded on an NVIDIA 3070 (8GB).
+    </p>
+
+    <!-- 3d model viewer -->
+    <p class="title is-3 mt-5 has-text-centered"> Exported Meshes </p>
+    <div class="level">
+      <div class="level-item">
+        <model-viewer src="meshes/anya.glb" poster="meshes/anya.jpg" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="level-item">
+        <model-viewer src="meshes/luigi.glb" poster="meshes/luigi.jpg" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="level-item">
+        <model-viewer src="meshes/zelda.glb" poster="meshes/zelda.jpg" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="level-item">
+        <model-viewer src="meshes/toy.glb" poster="meshes/toy.jpg" style="width: 100%; height: 300px;" auto-rotate shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+    </div>
+    
+    <p class="title is-3 mt-5 has-text-centered"> Mesh Animations </p>
+    <p class="content has-text-centered is-size-5">
+      The following results are animated by <a href="https://www.mixamo.com/">Mixamo</a>.
+    </p>
+    <div class="level">
+      <div class="level-item">
+        <model-viewer src="meshes/rabbit_animate.glb" poster="meshes/toy2.jpg" style="width: 100%; height: 300px;" autoplay shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="level-item">
+        <model-viewer src="meshes/girl_animate.glb" poster="meshes/girl_animate.png" style="width: 100%; height: 300px;" autoplay shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+      <div class="level-item">
+        <model-viewer src="meshes/boy_animate.glb" poster="meshes/boy_animate.png" style="width: 100%; height: 300px;" autoplay shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+      </div>
+    </div>
+
+    <!-- citation -->
+    <div class="card mt-4">
+      <header class="card-header">
+        <p class="card-header-title"> Citation </p>
+      </header>
+      <div class="card-content is-size-5 has-text-left">
+<pre><code>@article{tang2023dreamgaussian,
+  title={DreamGaussian: Generative Gaussian Splatting for Efficient 3D Content Creation},
+  author={Tang, Jiaxiang and Ren, Jiawei and Zhou, Hang and Liu, Ziwei and Zeng, Gang},
+  journal={arXiv preprint arXiv:2309.16653},
+  year={2023}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+
+  </section>
+</body>
+</html>
