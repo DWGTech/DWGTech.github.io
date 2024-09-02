@@ -42,13 +42,11 @@
 This paper presents a method for reconstructing watertight 3D surfaces from unoriented point clouds. 
 Starting with randomly initialized normals, the method iteratively refines each normal by diffusing the gradient of the generalized winding number (GWN) field. 
 Upon convergence, the target surface is extracted using the standard Marching Cubes algorithm. 
-Our method is conceptually simple, easy to implement. 
-Our method employs a straightforward Jacobi iteration and avoids reliance on third-party numerical solvers for linear systems and linear/non-linear optimization, unlike other methods.
-Designed for parallelization and scalability, it efficiently handles large-scale models on both CPUs and GPUs.
-Experimental results demonstrate that our method  outperforms all existing methods in reconstructing from unoriented point clouds, particularly in terms of runtime performance.
-On large-scale models with 10 to 20 million points, our CUDA implementation on an NVIDIA GTX 4090 GPU is typically 30-100 times faster than iPSR, the leading sequential method tested on a high-end PC with an Intel i9 CPU.  
-Furthermore, our approach exhibits superior robustness against noise and effectively handles models with thin structures, surpassing existing methods. 
-We will make the source code publicly available to encourage further research and applications.
+Our method employs a straightforward Jacobi iteration and avoids reliance on complex numerical solvers for linear systems or optimization, unlike other methods.
+Designed for parallelization and scalability, it efficiently handles large-scale models on both CPUs and GPUs. 
+Experimental results demonstrate that our method outperforms all existing methods in reconstructing from unoriented point clouds, particularly in terms of runtime performance. 
+On large-scale models with 10 to 20 million points, our CUDA implementation on an NVIDIA GTX 4090 GPU is typically 30-100 times faster than iPSR, the leading sequential method tested on a high-end PC with an Intel i9 CPU. 
+Additionally, by employing a screened variant of GWN, our approach demonstrates enhanced robustness against noise and outliers, and is particularly effective for models with thin structures and real scans that feature overlapping and registration misalignments.
     </p>
 
     <!-- 3d model viewer -->
