@@ -14,12 +14,6 @@
     DWG: Diffusing Winding Gradients
   </title>
   <link rel="icon" href="icon.ico">
-  <style>
-    .full-width-video {
-        width: 130%;
-        height: auto;
-    }
-  </style>
 </head>
 <body>
   <section class="section">
@@ -52,9 +46,14 @@ On large-scale models with 10 to 20 million points, our CUDA implementation on a
 Additionally, by employing a screened variant of GWN, our approach demonstrates enhanced robustness against noise and outliers, and is particularly effective for models with thin structures and real scans that feature overlapping and registration misalignments.
     </p>
 
-    <p class="title is-3 mt-5 has-text-centered"> Thai Statue (20M points) </p>
-    <video class="full-width-video" muted autoplay loop> 
-        <source src="videos/points_thai.mp4" type="video/mp4"> 
+    <p class="title is-3 mt-5 has-text-centered"> Large-scale models </p>
+    <video muted autoplay loop> 
+        <source src="videos/thai_1_1.mp4" type="video/mp4"> 
+    </video>
+
+    <p class="title is-3 mt-5 has-text-centered"> Large-scale models with 0.75% noise </p>
+    <video muted autoplay loop> 
+        <source src="videos/thai_1_2.mp4" type="video/mp4"> 
     </video>
 
     <!-- 3d model viewer -->
